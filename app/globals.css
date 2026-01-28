@@ -1,6 +1,23 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@layer components {
+  .icon {
+    @apply flex flex-col items-center justify-center text-sm font-light;
+  }
+  .icon svg {
+    @apply fill-white stroke-gray-300;
+  }
+
+  .icon p {
+    @apply text-gray-400 text-xs;
+  }
+
+  .postButton {
+    @apply flex justify-center flex-1;
+  }
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {

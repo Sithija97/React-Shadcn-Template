@@ -26,16 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         {/* toaster */}
 
         {/* header */}
-        <header>
+        <header className="border-b sticky top-0 bg-white z-50">
           <Header />
         </header>
 
-        <main>{children}</main>
+        <main className="bg-[#F4F2ED] flex-1 w-full">{children}</main>
       </body>
     </html>
   );

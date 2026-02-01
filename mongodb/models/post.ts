@@ -1,14 +1,14 @@
 import { IUser } from "@/types/user";
 import { IComment } from "@/types/comment";
 import { Comment, ICommentBase } from "@/mongodb/models/comment";
-import mongoose, { Document, Model, models, Schema } from "mongoose";
+import mongoose, { Model, models, Schema } from "mongoose";
 import { IPost } from "@/types/post";
 
 export interface IPostBase {
   user: IUser;
   text: string;
   imageUrl?: string;
-  comments: IComment[];
+  comments?: IComment[];
   likes?: string[];
 }
 

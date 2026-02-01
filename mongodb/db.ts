@@ -7,7 +7,7 @@ if (!connectionString) {
   throw new Error("MONGODB_URI is not defined in environment variables");
 }
 
-const connectDB = async () => {
+export const connectDB = async () => {
   if (mongoose.connection.readyState >= 1) {
     return;
   }

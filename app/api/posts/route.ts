@@ -1,14 +1,27 @@
 import { connectDB } from "@/mongodb/db";
-import { Post } from "@/mongodb/models/post";
+import { IPostBase, Post } from "@/mongodb/models/post";
 import { AddPostRequestBody } from "@/types/post";
 import { auth } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 export const POST = async (request: Request) => {
   auth.protect(); // protected route with clerlk
+  await connectDB();
 
   try {
-    const {}: AddPostRequestBody = await request.json();
+    const { user, text, imageUrl }: AddPostRequestBody = await request.json();
+
+    const postData: IPostBase = {
+      user,
+      text,
+      ...(imageUrl && { imageUrl }),
+    };
+
+    const post = await Post.create(postData);
+    return NextResponse.json(
+      { message: "Post created successfully", post },
+      { status: 201 },
+    );
   } catch (error) {}
 };
 

@@ -1,5 +1,7 @@
 "use server";
 
+import { uploadImageToCloudinary } from "@/lib/cloudinary";
+import { connectDB } from "@/mongodb/db";
 import { Post } from "@/mongodb/models/post";
 import { AddPostRequestBody } from "@/types/post";
 import { IUser } from "@/types/user";
@@ -13,8 +15,8 @@ const createPostAction = async (formData: FormData) => {
   }
 
   const postInput = formData.get("postInput") as string;
-  const image = formData.get("image") as File;
-  let imageUrl: string | undefined;
+  const image = formData.get("image") as File | null;
+  let image_url = undefined;
 
   if (!postInput) {
     throw new Error("Post content is required");
@@ -28,11 +30,21 @@ const createPostAction = async (formData: FormData) => {
     lastName: user.lastName || "",
   };
 
+  await connectDB();
+
   try {
     /* upload image if there is one */
-    if (image.size > 0) {
-      /* 1. upload image if there's one */
+    if (image && image.size > 0) {
+      image_url = await uploadImageToCloudinary(image);
+
       /* 2. create post in database with image */
+      const body: AddPostRequestBody = {
+        user: userDB,
+        text: postInput,
+        imageUrl: image_url,
+      };
+
+      await Post.create(body);
     } else {
       /* 1. create {post in database without image */
       const body: AddPostRequestBody = {

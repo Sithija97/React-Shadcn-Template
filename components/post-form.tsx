@@ -15,7 +15,6 @@ const PostForm = () => {
   const [preview, setPreview] = useState<string | null>(null);
 
   const handlePostAction = async (formData: FormData) => {
-    console.log(formData);
     const formDataCopy = formData;
     ref.current?.reset();
 
@@ -82,7 +81,9 @@ const PostForm = () => {
             onChange={handleImageChange}
           />
 
-          <button type="submit">Post</button>
+          <button type="submit" hidden>
+            Post
+          </button>
         </div>
 
         {/* preview conditional check */}

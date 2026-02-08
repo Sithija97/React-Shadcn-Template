@@ -6,6 +6,7 @@ import { Post } from "@/mongodb/models/post";
 import { AddPostRequestBody } from "@/types/post";
 import { IUser } from "@/types/user";
 import { currentUser } from "@clerk/nextjs/server";
+import { revalidatePath } from "next/cache";
 
 const createPostAction = async (formData: FormData) => {
   const user = await currentUser();
@@ -44,6 +45,7 @@ const createPostAction = async (formData: FormData) => {
         imageUrl: image_url,
       };
 
+      /* create post in db */
       await Post.create(body);
     } else {
       /* 1. create {post in database without image */
@@ -52,13 +54,14 @@ const createPostAction = async (formData: FormData) => {
         text: postInput,
       };
 
+      /* create post in db */
       await Post.create(body);
     }
   } catch (error) {
     throw new Error(`Failed to create post: ${error}`);
   }
 
-  /* create post in db */
   /* revalidate path '/' - home page */
+  revalidatePath("/");
 };
 export default createPostAction;

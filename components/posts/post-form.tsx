@@ -1,8 +1,8 @@
 "use client";
 
 import { useUser } from "@clerk/nextjs";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Button } from "./ui/button";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { Button } from "../ui/button";
 import { ImageIcon, XIcon } from "lucide-react";
 import { ChangeEvent, useRef, useState } from "react";
 import createPostAction from "@/actions/createPostAction";

@@ -3,9 +3,10 @@
 import { useUser } from "@clerk/nextjs";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { Button } from "../ui/button";
-import { ImageIcon, XIcon } from "lucide-react";
+import { ImageIcon, User, XIcon } from "lucide-react";
 import { ChangeEvent, useRef, useState } from "react";
 import createPostAction from "@/actions/createPostAction";
+import UserAvatar from "../common/user-avatar";
 
 const PostForm = () => {
   const ref = useRef<HTMLFormElement>(null);
@@ -56,15 +57,11 @@ const PostForm = () => {
         className="p-3 bg-white rounded-lg border"
       >
         <div className="flex items-center space-x-2">
-          <Avatar>
-            <AvatarImage
-              src={user?.id ? imageUrl : "https://github.com/shadcn.png"}
-            />
-            <AvatarFallback>
-              {firstName?.charAt(0)}
-              {lastName?.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
+          <UserAvatar
+            src={user?.id ? imageUrl : "https://github.com/shadcn.png"}
+            firstName={firstName}
+            lastName={lastName}
+          />
 
           <input
             type="text"

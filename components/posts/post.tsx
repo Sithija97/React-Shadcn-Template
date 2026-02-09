@@ -11,6 +11,7 @@ import { Trash2 } from "lucide-react";
 import deletePostAction from "@/actions/deletePostAction";
 import Image from "next/image";
 import PostOptions from "./post-options";
+import UserAvatar from "../common/user-avatar";
 
 const Post = ({ post }: { post: IPostDocument }) => {
   const { user } = useUser();
@@ -22,13 +23,11 @@ const Post = ({ post }: { post: IPostDocument }) => {
       {/* header */}
       <div className="p-4 flex space-x-2">
         <div>
-          <Avatar>
-            <AvatarImage src={post.user.userImage} />
-            <AvatarFallback>
-              {post.user.firstName.charAt(0)}
-              {post.user?.lastName?.charAt(0)}
-            </AvatarFallback>
-          </Avatar>
+          <UserAvatar
+            src={post.user.userImage}
+            firstName={post.user.firstName}
+            lastName={post.user.lastName}
+          />
         </div>
         <div className="flex justify-between flex-1">
           <div>

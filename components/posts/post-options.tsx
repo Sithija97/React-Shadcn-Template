@@ -1,12 +1,13 @@
 "use client";
 
 import { IPostDocument } from "@/mongodb/models/post";
-import { useUser } from "@clerk/nextjs";
+import { SignedIn, useUser } from "@clerk/nextjs";
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { MessageCircle, Repeat2, Send, ThumbsUpIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CommentFeed from "../comments/comment-feed";
+import CommentForm from "../comments/comment-form";
 
 const PostOptions = ({ post }: { post: IPostDocument }) => {
   const { user } = useUser();
@@ -130,7 +131,11 @@ const PostOptions = ({ post }: { post: IPostDocument }) => {
 
       {isCommentsOpen && (
         <div className="p-4">
-          {/* {user?.id && <CommentForm postId={postId} />} */}
+          {
+            <SignedIn>
+              <CommentForm postId={post._id.toString()} />
+            </SignedIn>
+          }
           <CommentFeed post={post} />
         </div>
       )}

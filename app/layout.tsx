@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "LinkedIn Clone",
   description: "A LinkedIn clone built with Next.js and Clerk",
   icons: {
-    icon: "/favicon.ico",
+    icon: "https://static.licdn.com/aero-v1/sc/h/akt4ae504epesldzj74dzred8",
   },
 };
 

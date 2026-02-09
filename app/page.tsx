@@ -10,7 +10,7 @@ export default async function Home() {
   await connectDB();
   const posts = await Post.getAllPosts();
   return (
-    <div className="grid grid-cols-8 mt-5 sm:px-5">
+    <div className="grid grid-cols-8 gap-4 mt-4 px-3 sm:px-5">
       <section className="hidden md:inline md:col-span-2">
         {/* user information */}
         <UserInformation posts={posts} />

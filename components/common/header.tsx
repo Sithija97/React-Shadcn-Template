@@ -12,7 +12,7 @@ import { Button } from "../ui/button";
 
 const Header = () => {
   return (
-    <div className="flex items-center p-2 max-w-6xl mx-auto">
+    <div className="flex flex-col gap-2 p-2 max-w-6xl mx-auto sm:flex-row sm:items-center">
       <Image
         className="rounded-lg"
         src="https://links.papareact.com/b3z"
@@ -21,8 +21,8 @@ const Header = () => {
         alt="logo"
       />
 
-      <div className="flex-1">
-        <form className="flex items-center space-x-1 bg-gray-100 p-2 rounded-md flex-1 mx-2 max-w-96">
+      <div className="w-full sm:flex-1">
+        <form className="flex items-center space-x-1 bg-gray-100 p-2 rounded-md w-full sm:mx-2 sm:max-w-96">
           <SearchIcon className="h-4 text-gray-600" />
           <input
             type="text"
@@ -32,25 +32,25 @@ const Header = () => {
         </form>
       </div>
 
-      <div className="flex items-center space-x-4 px-6">
+      <div className="flex items-center justify-between gap-3 px-2 sm:px-6">
         <Link href="/" className="icon">
           <HomeIcon className="h-5" />
-          <p>Home</p>
+          <p className="hidden sm:block">Home</p>
         </Link>
 
         <Link href="" className="icon hidden md:flex">
           <UsersIcon className="h-5" />
-          <p>Network</p>
+          <p className="hidden sm:block">Network</p>
         </Link>
 
         <Link href="" className="icon hidden md:flex">
           <Briefcase className="h-5" />
-          <p>Jobs</p>
+          <p className="hidden sm:block">Jobs</p>
         </Link>
 
         <Link href="" className="icon">
           <MessagesSquare className="h-5" />
-          <p>Messaging</p>
+          <p className="hidden sm:block">Messaging</p>
         </Link>
 
         {/* user button */}

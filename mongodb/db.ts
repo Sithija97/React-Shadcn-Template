@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const connectionString =
-  process.env.MONGODB_URI || "mongodb://localhost:27017/mydatabase";
+  process.env.MONGO_DB_URI || "mongodb://localhost:27017/mydatabase";
 
 if (!connectionString) {
   throw new Error("MONGODB_URI is not defined in environment variables");

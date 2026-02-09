@@ -4,6 +4,7 @@ import UserInformation from "@/components/common/user-infomation";
 import { connectDB } from "@/mongodb/db";
 import { Post } from "@/mongodb/models/post";
 import { SignedIn } from "@clerk/nextjs";
+import Widget from "@/components/common/widget";
 
 export default async function Home() {
   await connectDB();
@@ -26,6 +27,7 @@ export default async function Home() {
 
       <section className="hidden xl:inline justify-center col-span-2">
         {/* widgets */}
+        <Widget />
       </section>
     </div>
   );

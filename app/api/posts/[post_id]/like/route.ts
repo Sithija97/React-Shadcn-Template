@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export const GET = async (
   request: Request,
-  { params }: { params: { post_id: string } },
+  { params }: { params: Promise<{ post_id: string }> },
 ) => {
   await connectDB();
 
@@ -29,7 +29,7 @@ export const GET = async (
 
 export const POST = async (
   request: Request,
-  { params }: { params: { post_id: string } },
+  { params }: { params: Promise<{ post_id: string }> },
 ) => {
   auth.protect();
 

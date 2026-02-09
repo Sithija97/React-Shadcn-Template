@@ -5,12 +5,13 @@ import { NextResponse } from "next/server";
 
 export const GET = async (
   request: Request,
-  { params }: { params: { post_id: string } },
+  { params }: { params: Promise<{ post_id: string }> },
 ) => {
   await connectDB();
 
   try {
-    const post = await Post.findById(params.post_id);
+    const { post_id } = await params;
+    const post = await Post.findById(post_id);
 
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
@@ -24,7 +25,7 @@ export const GET = async (
 
 export const DELETE = async (
   request: Request,
-  { params }: { params: { post_id: string } },
+  { params }: { params: Promise<{ post_id: string }> },
 ) => {
   auth.protect(); // protected route with clerlk
 
@@ -33,7 +34,8 @@ export const DELETE = async (
   const user = await currentUser();
 
   try {
-    const post = await Post.findById(params.post_id);
+    const { post_id } = await params;
+    const post = await Post.findById(post_id);
 
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });

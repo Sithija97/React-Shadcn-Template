@@ -12,6 +12,7 @@ import deletePostAction from "@/actions/deletePostAction";
 import Image from "next/image";
 import PostOptions from "./post-options";
 import UserAvatar from "../common/user-avatar";
+import { toast } from "sonner";
 
 const Post = ({ post }: { post: IPostDocument }) => {
   const { user } = useUser();
@@ -50,20 +51,20 @@ const Post = ({ post }: { post: IPostDocument }) => {
           </div>
 
           {isAuthor && (
-            <Button
-              variant="outline"
-              onClick={() => {
-                console.log("delete post");
+            <form
+              action={() => {
                 const promise = deletePostAction(post._id.toString());
-                // toast.promise(promise, {
-                //   loading: "Deleting post...",
-                //   success: "Post deleted!",
-                //   error: "Error deleting post",
-                // });
+                toast.promise(promise, {
+                  loading: "Deleting post...",
+                  success: "Post deleted!",
+                  error: "Error deleting post",
+                });
               }}
             >
-              <Trash2 />
-            </Button>
+              <Button variant="outline" type="submit">
+                <Trash2 />
+              </Button>
+            </form>
           )}
         </div>
       </div>

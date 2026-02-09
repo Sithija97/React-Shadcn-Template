@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 export const POST = async (
   request: Request,
-  { params }: { params: { post_id: string } },
+  { params }: { params: Promise<{ post_id: string }> },
 ) => {
   auth.protect();
 

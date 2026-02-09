@@ -8,6 +8,7 @@ import { MessageCircle, Repeat2, Send, ThumbsUpIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CommentFeed from "../comments/comment-feed";
 import CommentForm from "../comments/comment-form";
+import { toast } from "sonner";
 
 const PostOptions = ({ post }: { post: IPostDocument }) => {
   const { user } = useUser();
@@ -96,7 +97,14 @@ const PostOptions = ({ post }: { post: IPostDocument }) => {
         <Button
           variant="ghost"
           className="postButton"
-          onClick={likeOrUnlikePost}
+          onClick={() => {
+            const promise = likeOrUnlikePost();
+            toast.promise(promise, {
+              loading: liked ? "Unliking post..." : "Liking post...",
+              success: liked ? "Post unliked!" : "Post liked!",
+              error: "Error liking or unliking post",
+            });
+          }}
         >
           {/* If user has liked the post, show filled thumbs up icon */}
           <ThumbsUpIcon

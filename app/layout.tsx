@@ -41,7 +41,9 @@ export default function RootLayout({
             <Header />
           </header>
 
-          <main className="bg-[#F4F2ED] flex-1 w-full">{children}</main>
+          <div className="bg-[#F4F2ED] flex-1 w-full">
+            <main className="max-w-6xl mx-auto">{children}</main>
+          </div>
         </body>
       </html>
     </ClerkProvider>

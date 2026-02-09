@@ -91,7 +91,11 @@ const PostForm = () => {
         )}
 
         <div className="flex justify-end space-x-2 mt-2">
-          <Button type="button" onClick={openImageInput}>
+          <Button
+            variant={preview ? "secondary" : "outline"}
+            type="button"
+            onClick={openImageInput}
+          >
             <ImageIcon className="mr-2" size={16} color="currentColor" />
             {preview ? "Change" : "Add"} image
           </Button>

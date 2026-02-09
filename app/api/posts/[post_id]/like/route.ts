@@ -10,17 +10,18 @@ export const GET = async (
   await connectDB();
 
   try {
-    const post = await Post.findById(params.post_id);
+    const { post_id } = await params;
+    const post = await Post.findById(post_id);
 
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 
     const likes = post.likes;
-    return NextResponse.json({ likes }, { status: 200 });
+    return NextResponse.json(likes);
   } catch (error) {
     return NextResponse.json(
-      { error: "Error fetching likes" },
+      { error: "An error occurred while fetching likes" },
       { status: 500 },
     );
   }
@@ -41,18 +42,19 @@ export const POST = async (
   }
 
   try {
-    const post = await Post.findById(params.post_id);
+    const { post_id } = await params;
+    const post = await Post.findById(post_id);
 
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });
     }
 
     await post.likePost(user.id);
-    return NextResponse.json(
-      { message: "Post liked successfully" },
-      { status: 200 },
-    );
+    return NextResponse.json({ message: "Post liked successfully" });
   } catch (error) {
-    return NextResponse.json({ error: "Error liking post" }, { status: 500 });
+    return NextResponse.json(
+      { error: "An error occurred while liking the post" },
+      { status: 500 },
+    );
   }
 };

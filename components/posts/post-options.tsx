@@ -7,7 +7,6 @@ import { Button } from "../ui/button";
 import { MessageCircle, Repeat2, Send, ThumbsUpIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import CommentFeed from "../comments/comment-feed";
-import { set } from "mongoose";
 
 const PostOptions = ({ post }: { post: IPostDocument }) => {
   const { user } = useUser();
@@ -59,13 +58,13 @@ const PostOptions = ({ post }: { post: IPostDocument }) => {
     }
 
     const fetchLikesResponse = await fetch(`/api/posts/${post._id}/like`);
-    if (fetchLikesResponse.ok) {
+    if (!fetchLikesResponse.ok) {
       setLiked(originalLiked);
       setLikes(originalLikes);
       throw new Error("Failed to fetch updated likes");
     }
 
-    const newLikeData = await fetchLikesResponse.json();
+    const newLikeData = (await fetchLikesResponse.json()) as string[];
     setLikes(newLikeData);
   };
 

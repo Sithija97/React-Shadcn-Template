@@ -18,7 +18,8 @@ export const POST = async (
   }
 
   try {
-    const post = await Post.findById(params.post_id);
+    const { post_id } = await params;
+    const post = await Post.findById(post_id);
 
     if (!post) {
       return NextResponse.json({ error: "Post not found" }, { status: 404 });

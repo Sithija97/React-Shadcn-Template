@@ -11,7 +11,7 @@ export default async function Home() {
   const posts = await Post.getAllPosts();
   return (
     <div className="grid grid-cols-8 gap-4 mt-4 px-3 sm:px-5">
-      <section className="hidden md:inline md:col-span-2">
+      <section className="hidden md:inline md:col-span-2 md:sticky md:top-4 self-start h-fit">
         {/* user information */}
         <UserInformation posts={posts} />
       </section>

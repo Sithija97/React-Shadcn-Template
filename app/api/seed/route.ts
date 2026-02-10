@@ -83,7 +83,7 @@ const basePostTexts: string[] = [
   "React: use `key` changes sparingly; remounting is expensive. Keep local state stable unless you truly need a reset.",
   "JavaScript: be explicit with `Number()` in parsing. Avoid implicit coercion bugs. Your future self will thank you.",
   "TypeScript: keep your domain types small and composable. It makes refactors faster and safer.",
-  "Interview prep: practice answering \"Tell me about a time you disagreed\" with empathy and data. Show how you resolved it, not just that you were right.",
+  'Interview prep: practice answering "Tell me about a time you disagreed" with empathy and data. Show how you resolved it, not just that you were right.',
   "Cloud: pick one cloud feature and learn it deeply. Breadth comes later. Depth is what helps you debug at 3 a.m.",
   "Next.js: cache invalidation is a product decision as much as a tech one. Be clear about freshness requirements with stakeholders.",
   "React: build component APIs for future usage, not just the first case. A little foresight prevents breaking changes.",
@@ -138,7 +138,6 @@ const extraSentences: string[] = [
 const postTexts: string[] = basePostTexts.map(
   (text, index) => `${text} ${extraSentences[index % extraSentences.length]}`,
 );
-
 
 const baseTimeMs = Date.now() - 1000 * 60 * 60 * 24 * 30; // 30 days ago
 const seedPosts: (IPostBase & { createdAt: Date; updatedAt: Date })[] =
